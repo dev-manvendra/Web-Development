@@ -35,19 +35,29 @@ const new_ob = Object.assign(ob1, ob2) // here ob1 is target (which mean all val
 // To avoid changes in first objects,we pass an empty object as target
 const new_ob2= Object.assign({}, ob2, ob3)
 
-console.log(new_ob);
-console.log(ob1);
+// console.log(new_ob);
+// console.log(ob1);
 
-console.log(new_ob2);
+// console.log(new_ob2);
 
-console.log(app_user);
+// console.log(app_user);
 
-console.log(Object.keys(app_user)); // display only keys(data type : array).
-console.log(Object.values(app_user)); // display only values(data type : array).
-console.log(Object.entries(app_user)); // Entry is a pair of key and value(data type : array).
+// console.log(Object.keys(app_user)); // display only keys(data type : array).
+// console.log(Object.values(app_user)); // display only values(data type : array).
+// console.log(Object.entries(app_user)); // Entry is a pair of key and value(data type : array).
 
-// It is also a important method
-console.log(app_user .hasOwnProperty(name)); // return boolean type data for asked question.
+// // It is also a important method
+// console.log(app_user .hasOwnProperty(name)); // return boolean type data for asked question.
+
+const ob = {
+    first_name : "Manvendra",
+    last_name: "kushwaha"
+    
+}
+const {first_name : fn} = ob
+console.log(fn);
+const {last_name : ln} = ob
+console.log(ln);
 
 
 
