@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XML Http Requests</title>
+</head>
+<body style ="background-color: #212121; color: #fff;">
+    <h1>These are states for XML Http Requests</h1>
+    <!-- <h2>These are states for XML Http Requests</h2> -->
+    0	UNSENT	Client has been created. open() not called yet.<br>
+    1	OPENED	open() has been called.<br>
+    2	HEADERS_RECEIVED	send() has been called, and headers and status are available.<br>
+    3	LOADING	Downloading; responseText holds partial data.<br>
+    4	DONE	The operation is complete.<br>
+</body>
+<script>
+    let requestUrl = "https://api.github.com/users/Manvendra-ML"
+    const xmlRequest = XMLHttpRequest();
+
+    xmlRequest.open("GET", requestUrl);
+    xmlRequest.send();
+</script>
+</html>
