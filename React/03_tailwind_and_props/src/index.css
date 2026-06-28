@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+body {
+    display: flex; 
+    flex-direction: column; /* or row */
+}
+
+/* Now align-self will work! */
+#root {
+    align-self: center;
+}
