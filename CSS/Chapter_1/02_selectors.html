@@ -1,12 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    
+<head>    
     <title>Selectors in CSS</title>
+    <style>
+        /* universal selector */
+        *{
+            padding: 0;
+            margin: 0;
+            background-color: yellowgreen;
+        }
+        /* select element by class */
+        .primary{
+            text-align: center;
+        }
+        /* select element by id */
+        #heading{
+            
+            background-color: darkolivegreen;
+            color:grey
+        }
+        #paragraph{
+            background-color: darkolivegreen;
+            color: aliceblue;
+        }
+    </style>
 </head>
 <body>
     <div class="primary">
-        <h1 id="heading">This is first div</h1>
+        <h1 id="heading">This is first heading</h1>
         <p id="paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem non incidunt voluptas similique libero accusamus consequatur officiis delectus nihil veniam.</p>
     </div>
 </body>
