@@ -11,12 +11,18 @@ function App() {
           <p>Click on the button below to change the background-color</p>
         </div>
         <div className='colour'>
-          <button className='btn'>Red</button>
-          <button className='btn'>Green</button>
-          <button className='btn'>Blue</button>
-          <button className='btn'>White</button>
-          <button className='btn'>Burgandy</button>
-          <button className='btn'>Yellow</button>
+          <button className='btn'
+          style={{backgroundColor: "red", border: "none"}}>Red</button>
+          <button className='btn'
+          style={{backgroundColor: "green", border: "none"}}>Green</button>
+          <button className='btn'
+          style={{backgroundColor: "blue", border: "none"}}>Blue</button>
+          <button className='btn'
+          style={{backgroundColor: "whitesmoke", border: "none"}}>White</button>
+          <button className='btn'
+          style={{backgroundColor: "orange", border: "none"}}>Orange</button>
+          <button className='btn'
+          style={{backgroundColor: "yellow", border: "none"}}>Yellow</button>
           
         </div>
     </div>
