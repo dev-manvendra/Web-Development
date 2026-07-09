@@ -6,7 +6,7 @@
 }
 
 body{
-    background: #2f2f2f;
+    background: #121220;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -64,6 +64,7 @@ body{
 }
 
 .input button:active{
+  background: transparent;
     transform: scale(.96);
 }
 
