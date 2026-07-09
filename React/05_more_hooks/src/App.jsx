@@ -7,16 +7,17 @@ function App() {
   return (
     <>
       <div className='main'>
-        <div>
           <div className='input-field'>
             <h1>Password Generator</h1>
-            <input 
-            type="text"
-            value="http"
-            placeholder='Password'
-            readOnly
-            />
-            <button>Copy</button>
+            <div className='input'>
+              <input 
+              type="text"
+              value=""
+              placeholder='Password'
+              readOnly
+              />
+              <button>Copy</button>
+            </div>
           </div>
           <div className='fields'>
             <div>
@@ -44,7 +45,6 @@ function App() {
             </div>
             
           </div>
-        </div>
       </div>
     </>
   )
