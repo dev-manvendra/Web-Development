@@ -5,12 +5,9 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <>
-      <div className='main'>
-
-      </div>
-
-    </>
+  <>
+  <div className='h-screen w-full bg-gray-800'></div>
+  </>
   )
 }
 
