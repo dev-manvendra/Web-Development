@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import InputBox from './input';
+import InputBox from './components/input';
 import bgImage from "./assets/bg-image.avif";
 
 
