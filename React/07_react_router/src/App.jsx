@@ -1,12 +1,18 @@
-import { useState } from 'react'
+import React from "react"
+import Footer from "./assets/components/Footer"
+import Header from "./assets/components/Header"
 
+import { Outlet } from "react-router"
 
 
 function App() {
-  const [count, setCount] = useState(0)
+  
 
   return (
     <>
+      <Header />
+      <Outlet />
+      <Footer />
     </>
   )
 }

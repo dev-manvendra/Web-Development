@@ -1,3 +1,6 @@
+import React from "react";
+import { Link } from "react-router";
+
 export default function Footer() {
     return (
         <footer className="bg-white border-y">
@@ -58,7 +61,7 @@ export default function Footer() {
                                 </li>
                                 <li>
                                     <Link to="#" className="hover:underline">
-                                        Terms &amp; Conditions
+                                        Terms Conditions
                                     </Link>
                                 </li>
                             </ul>
