@@ -4,7 +4,7 @@ const initialState = {
     todos: [{}]
 }
 
-const todoSlice= createSlice(
+export const todoSlice= createSlice(
     {
         name: 'todo',
         initialState,
@@ -18,10 +18,14 @@ const todoSlice= createSlice(
                 state.todos.push(Todo);
             },
             deleteTodo : (state, action)=>{
-                state.todos.filter((each)=> each.id !== action.payload.id );
+                state.todos = state.todos.filter((each)=> each.id !== action.payload.id );
             }
             
 
         }
     }
 )
+
+export const {addTodo, deleteTodo} = todoSlice.actions
+
+export default todoSlice.reducer
