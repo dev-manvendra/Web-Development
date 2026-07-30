@@ -2,13 +2,13 @@ import React from 'react'
 import { useTheme } from '../../context/context'
 
 function Theme() {
-    const { darkTheme, lightTheme } = useTheme()
+    const { themeMode, darkTheme, lightTheme } = useTheme()
 
     return (
         <label className="relative inline-flex items-center cursor-pointer">
             <input
                 type="checkbox"
-                value=""
+                checked={themeMode === "dark"}
                 onChange={(e) => {
                     if (e.target.checked) {
                         darkTheme()
