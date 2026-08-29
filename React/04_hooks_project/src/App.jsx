@@ -1,11 +1,13 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 function App() {
   let [color, setColor] = useState("olive")
+  useEffect(()=>{
+    document.querySelector('body').style.backgroundColor= color;
+  },[color])
 
   return (
-    <div className='main'
-    style={{backgroundColor: color}}>
+    <>
         <div className='heading'>
           <h1>Background Colour Changer</h1>
           <p>Click on the button below to change the background-color</p>
@@ -42,7 +44,7 @@ function App() {
           style={{backgroundColor: "yellow"}}>Yellow</button>
           
         </div>
-    </div>
+      </>
   );
 }
 
