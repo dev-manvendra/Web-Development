@@ -18,6 +18,6 @@ const UserSchema = new mongoose.Schema({
         required : [true, "password is required"],
         unique : true
     }
-})
+}, {timestamps : true })
 
 export const User = mongoose.model("User", UserSchema);
