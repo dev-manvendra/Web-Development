@@ -1,1 +1,1 @@
-export const DB = "streamtube";
+export const DB_NAME = "streamtube";
