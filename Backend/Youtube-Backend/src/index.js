@@ -1,12 +1,26 @@
 import dns from "node:dns"
 import "dotenv/config"
 import connectDB from "./db/index.js"
+import app from "./app.js"
+import { log } from "node:console"
 
 if (process.env.DNS_SERVERS) {
     dns.setServers(process.env.DNS_SERVERS.split(",").map(server => server.trim()))
 }
 
 connectDB()
+.then(()=>{
+    app.listen(process.env.PORT || 8000, ()=>{
+        console.log("Server running at port", process.env.PORT);
+        
+    });
+
+    
+})
+.catch( (error)=>{
+    console.log("Database Connection Error!!", error);
+    
+})
 
 
 
