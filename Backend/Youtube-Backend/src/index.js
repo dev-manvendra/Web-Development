@@ -1,17 +1,68 @@
-import mongoose from "mongoose";
-import express from "express";
-import { DB_NAME } from "./constants";
+import dns from "node:dns"
+import "dotenv/config"
+import connectDB from "./db/index.js"
 
-const app = express();
+if (process.env.DNS_SERVERS) {
+    dns.setServers(process.env.DNS_SERVERS.split(",").map(server => server.trim()))
+}
 
-;( async () => {
-    try {
-        await mongoose.connect(`${process.env.MONGODB_URL}/${DB_NAME}`);
-        app.on("error", (error)=>{
-            console.log("connection error", error);
-        })
+connectDB()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ;( async () => {
+//     try {
+//         await mongoose.connect(`${process.env.MONGODB_URL}/${DB_NAME}`);
+//         app.on("error", (error)=>{
+//             console.log("connection error", error);
+//         })
         
-    } catch (error) {
-        console.log("error", error);
-    }
-})()
+//     } catch (error) {
+//         console.log("error", error);
+//     }
+// })()
