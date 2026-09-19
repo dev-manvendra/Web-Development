@@ -7,3 +7,5 @@ const userRegister = AsyncHandler((req, res) =>{
         }
     )
 })
+
+export default userRegister
