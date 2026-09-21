@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import jwt from "jsonwebtoken"
+import bcrypt from "bcrypt"
 
 const UserSchema = mongoose.Schema({
 
@@ -6,7 +8,7 @@ const UserSchema = mongoose.Schema({
         type: String,
         required : true,
         unique : true,
-        lowecase : true,
+        lowercase : true,
         trim : true,
         index : true
     },
@@ -14,7 +16,7 @@ const UserSchema = mongoose.Schema({
     email : {
         type: String,
         required : true,
-        lowecase : true,
+        lowercase : true,
         unique : true,
         trim : true,
        
@@ -22,17 +24,13 @@ const UserSchema = mongoose.Schema({
 
     password : {
         type: String,
-        required : true,
-        unique : true,
-        trim : true,
-        lowecase : true,
-        
+        required : true
     },
 
     fullname : {
         type: String,
         required : true,
-        lowecase : true,
+        lowercase : true,
         trim : true,
         index : true
         
@@ -42,29 +40,30 @@ const UserSchema = mongoose.Schema({
         required : true,
         
     },
-    coverImg : String,
+    coverImage : String,
 
-    watchHistory : {
-        type : mongoose.Schema.Types.ObjectId,
-        ref : "videos"
-    }
+    watchHistory : [
+        {
+            type : mongoose.Schema.Types.ObjectId,
+            ref : "Video"
+        }
+    ]
 
 },{timestamps : true});
 
-UserSchema.pre("save", async function (next) {
-    if(this.isModified("password")){
-        this.password = await bcrypt.hash(this.password, 10);
-    }
-    next();
+UserSchema.pre("save", async function () {
+    if(!this.isModified("password")) return;
+
+    this.password = await bcrypt.hash(this.password, 10)
     
 })
 
-UserSchema.methods(verifyPassword = async function (password) {
+UserSchema.methods.verifyPassword = async function (password) {
     return await bcrypt.compare(password, this.password);
     
-})
+}
 
-UserSchema.methods(getAccessToken = function () {
+UserSchema.methods.getAccessToken = function () {
     return jwt.sign(
         {
             _id : this._id,
@@ -77,8 +76,8 @@ UserSchema.methods(getAccessToken = function () {
        }
 
     )
-})
-UserSchema.methods(getRefreshToken = function () {
+}
+UserSchema.methods.getRefreshToken = function () {
     return jwt.sign(
         {
             _id : this._id,
@@ -91,7 +90,7 @@ UserSchema.methods(getRefreshToken = function () {
        }
 
     )
-})
+}
 
 export const User = mongoose.model("User", UserSchema);
 
