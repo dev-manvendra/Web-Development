@@ -1,6 +1,8 @@
 import AsyncHandler from "../utils/AsyncHandler.js"
 import {ApiError} from "../utils/ApiErrors.js"
 import {User} from "../models/User.model.js"
+import uploadOnCloudinary from "../utils/Cloudinary.js"
+import { ApiResponse } from "../utils/ApiResponse.js"
 
 const userRegister = AsyncHandler(async (req, res) =>{
 
@@ -30,29 +32,24 @@ const userRegister = AsyncHandler(async (req, res) =>{
         throw new ApiError(409, "User with email or username already exists")
     }
 
-    const avatarLocalPath = req.files?.avatar[0]?.path;
-    // const coverImgPath = req.files?.coverImg[0]?.path;
+    const avatarLocalPath = req.files?.avatar?.[0]?.path;
+    const coverImgLocalPath = req.files?.coverImg?.[0]?.path;
 
-    let coverImageLocalPath;
-    if (req.files && Array.isArray(req.files.coverImg) && req.files.coverImg.length > 0) {
-        coverImageLocalPath = req.files.coverImage[0].path
-    }
-
-        if (!avatarLocalPath) {
-        throw new ApiError(400, "Avatar file is required")
+    if (!avatarLocalPath) {
+    throw new ApiError(400, "Avatar file is required")
     }
 
     const avatar = await uploadOnCloudinary(avatarLocalPath)
     const coverImg = await uploadOnCloudinary(coverImgLocalPath)
 
     if (!avatar) {
-        throw new ApiError(400, "Avatar file is required")
+        throw new ApiError(502, "Avatar upload failed. Check server logs for details.")
     }
 
      const user = await User.create({
         fullname,
         avatar: avatar.url,
-        coverImage: coverImage?.url || "",
+        coverImage: coverImg?.url || "",
         email, 
         password,
         username: username.toLowerCase()
