@@ -20,4 +20,20 @@ import userRouter from "./routes/user.route.js"
 
 app.use("/api/v1/users", userRouter)
 
+import { ApiError } from "./utils/ApiErrors.js";
+import { ApiResponse } from "./utils/ApiResponse.js";
+
+app.use((err, req, res, next) => {
+    if (err instanceof ApiError) {
+        return res.status(err.statusCode).json(
+            new ApiResponse(err.statusCode, null, err.message)
+        )
+    }
+
+    console.error("Unhandled error:", err)
+    return res.status(500).json(
+        new ApiResponse(500, null, "Internal Server Error")
+    )
+})
+
 export default app;
