@@ -70,4 +70,24 @@ const userRegister = AsyncHandler(async (req, res) =>{
 
 })
 
-export default userRegister
+// const loginUser = AsyncHandler ( async (req, res) => {
+//     req.body(username,email , password)
+
+//     if( !username || !email){
+//         throw new ApiError(400, "usernaem or email is required!")
+//     }
+
+//     const user = await User.findOne(
+//         $or ([{username}, {email}])
+//     )
+
+//     if(!user) throw new ApiError(404, "User does not exits");
+
+    
+
+// })
+
+export {
+    userRegister
+    // loginUser
+}
