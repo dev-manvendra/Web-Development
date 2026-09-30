@@ -263,6 +263,9 @@ const getCurrentUser = AsyncHandler(async(req, res) => {
 export {
     userRegister,
     loginUser,
-    logoutUser
+    logoutUser, 
+    refreshAccessToken,
+    getCurrentUser,
+    changeCurrentPassword
 
 }
