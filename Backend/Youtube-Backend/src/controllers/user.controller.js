@@ -259,7 +259,7 @@ const getCurrentUser = AsyncHandler(async(req, res) => {
 })
 
 const updateCoverImg = AsyncHandler(async (req, res)=>{
-    const coverImgLocalPath = req.file?.coverImg
+    const coverImgLocalPath = req.file?.cove
 
     if(!coverImgLocalPath){
         new ApiError(
@@ -305,7 +305,7 @@ const updateAvatar = AsyncHandler(async (req, res)=>{
         )
     }
 
-    User.findByIdAndUpdate(
+    await User.findByIdAndUpdate(
         {
             avatar: avatar.url
         },
