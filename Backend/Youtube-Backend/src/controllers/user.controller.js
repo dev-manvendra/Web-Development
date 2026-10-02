@@ -328,6 +328,8 @@ export {
     logoutUser, 
     refreshAccessToken,
     getCurrentUser,
-    changeCurrentPassword
+    changeCurrentPassword,
+    updateAvatar,
+    updateCoverImg
 
 }
