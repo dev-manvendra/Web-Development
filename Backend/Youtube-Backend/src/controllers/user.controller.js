@@ -258,6 +258,36 @@ const getCurrentUser = AsyncHandler(async(req, res) => {
     ))
 })
 
+const updateCoverImg = AsyncHandler(async (req, res)=>{
+    const coverImgLocalPath = req.file?.coverImg
+
+    if(!coverImgLocalPath){
+        new ApiError(
+            404, "The cover img file is missing!!"
+        )
+    }
+
+    const coverImg=  await uploadOnCloudinary(coverImgLocalPath)
+
+        if(!coverImg){
+        new ApiError(
+            404, "Error while uploading Cover Img on cloudnary!!"
+        )
+    }
+
+    await User.findByIdAndUpdate(
+        {
+            coverImg : coverImg.url
+        },
+        {new : true}
+    )
+
+    return res
+    .status(200)
+    .json(
+        new ApiResponse(200, "The cover Image is updated Successfully")
+    )
+})
 const updateAvatar = AsyncHandler(async (req, res)=>{
     const avatartLocalPath = req.file?.avatar
 
