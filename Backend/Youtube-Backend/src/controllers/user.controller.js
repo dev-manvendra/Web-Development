@@ -258,6 +258,38 @@ const getCurrentUser = AsyncHandler(async(req, res) => {
     ))
 })
 
+const updateAvatar = AsyncHandler(async (req, res)=>{
+    const avatartLocalPath = req.file?.avatar
+
+    if(!avatartLocalPath){
+        new ApiError(
+            404, "The avatar file is missing!!"
+        )
+    }
+
+    const avatar=  await uploadOnCloudinary(avatartLocalPath)
+
+        if(!avatar){
+        new ApiError(
+            404, "Error while uploading Avatar on cloudnary!!"
+        )
+    }
+
+    User.findByIdAndUpdate(
+        {
+            avatar: avatar.url
+        },
+        {new : true}
+    )
+
+    return res
+    .status(200)
+    .json(
+        new ApiResponse(200, "The avatar is updated Successfully")
+    )
+})
+
+
 
 
 export {
