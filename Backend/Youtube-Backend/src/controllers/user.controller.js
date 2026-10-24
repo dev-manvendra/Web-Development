@@ -9,8 +9,8 @@ import { ApiResponse } from "../utils/ApiResponse.js"
 const generateAccessAndRefereshTokens = async(userId) =>{
     try {
         const user = await User.findById(userId)
-        const accessToken = user.generateAccessToken()
-        const refreshToken = user.generateRefreshToken()
+        const accessToken = user.getAccessToken ? user.getAccessToken() : user.generateAccessToken()
+        const refreshToken = user.getRefreshToken ? user.getRefreshToken() : user.generateRefreshToken()
 
         user.refreshToken = refreshToken
         await user.save({ validateBeforeSave: false })
@@ -121,7 +121,7 @@ const loginUser = AsyncHandler(async (req, res) =>{
         throw new ApiError(404, "User does not exist")
     }
 
-   const isPasswordValid = await user.isPasswordCorrect(password)
+   const isPasswordValid = user.isPasswordCorrect ? await user.isPasswordCorrect(password) : (user.verifyPassword ? await user.verifyPassword(password) : false)
 
    if (!isPasswordValid) {
     throw new ApiError(401, "Invalid user credentials")
@@ -233,7 +233,7 @@ const changeCurrentPassword = AsyncHandler(async(req, res) => {
     
 
     const user = await User.findById(req.user?._id)
-    const isPasswordCorrect = await user.isPasswordCorrect(oldPassword)
+    const isPasswordCorrect = user.isPasswordCorrect ? await user.isPasswordCorrect(oldPassword) : (user.verifyPassword ? await user.verifyPassword(oldPassword) : false)
 
     if (!isPasswordCorrect) {
         throw new ApiError(400, "Invalid old password")
